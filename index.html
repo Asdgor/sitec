@@ -3,222 +3,553 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Иван Петров - Веб-разработчик</title>
+    <title>Coffee House - Уютное кафе</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #8B5A2B;
+            --secondary: #D4A574;
+            --accent: #F7E9D7;
+            --light: #FFF9F0;
+            --dark: #3E2723;
+            --text: #5D4037;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
-
+        
         body {
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #f8f9fa;
+            color: var(--text);
+            background-color: var(--light);
+            overflow-x: hidden;
         }
-
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
         .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
         }
-
-        /* Шапка */
-        header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 100px 0;
-            text-align: center;
-        }
-
-        .header-content h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .header-content p {
-            font-size: 1.5rem;
-            opacity: 0.9;
-        }
-
-        /* Секции */
+        
         section {
             padding: 80px 0;
         }
-
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(139, 90, 43, 0.2);
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.3);
+        }
+        
+        .btn-large {
+            padding: 16px 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* Герой-секция */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(139, 90, 43, 0.8), rgba(212, 165, 116, 0.8)), 
+                        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, var(--light), transparent);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+            z-index: 2;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        /* Меню */
+        .menu {
+            background-color: var(--light);
+        }
+        
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #333;
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            position: relative;
         }
-
-        /* Обо мне */
-        .about {
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .menu-item {
             background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
         }
-
+        
+        .menu-item:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+        
+        .menu-item-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .menu-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .menu-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .menu-content {
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .menu-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        
+        .menu-content p {
+            color: #777;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* О нас */
+        .about {
+            background: linear-gradient(135deg, var(--accent), var(--light));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+        
         .about-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-content p {
             font-size: 1.2rem;
             line-height: 1.8;
+            margin-bottom: 25px;
         }
-
-        /* Услуги */
-        .services {
-            background: #f8f9fa;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+        
+        .about-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
             margin-top: 50px;
         }
-
-        .service-card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
-        }
-
-        /* Контакты */
-        .contacts {
-            background: white;
+        
+        .stat {
             text-align: center;
         }
-
-        .contact-info {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
         }
-
-        .email {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
+        
+        .stat-text {
+            font-size: 1rem;
+            color: var(--text);
         }
-
-        .btn {
-            display: inline-block;
-            background: #667eea;
+        
+        /* Бронирование */
+        .reservation {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1.1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-
-        .btn:hover {
-            background: #764ba2;
+        
+        .reservation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
         }
-
+        
+        .reservation .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .reservation .section-title {
+            color: white;
+        }
+        
+        .reservation .section-title::after {
+            background: white;
+        }
+        
+        .reservation p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .reservation .btn {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+        
+        .reservation .btn:hover {
+            background: transparent;
+            color: white;
+        }
+        
         /* Футер */
         footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
+            background: var(--dark);
+            color: var(--light);
+            padding: 60px 0 20px;
         }
-
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        .footer-section p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* Адаптивность */
-        @media (max-width: 768px) {
-            .header-content h1 {
-                font-size: 2rem;
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
             }
             
-            .header-content p {
-                font-size: 1.2rem;
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
             }
             
             .section-title {
                 font-size: 2rem;
             }
             
-            section {
-                padding: 50px 0;
+            .about-stats {
+                flex-direction: column;
+                gap: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn {
+                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Шапка -->
-    <header>
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Coffee House</h1>
+            <p>Наслаждайтесь искусством кофе в уютной атмосфере</p>
+            <a href="#menu" class="btn btn-large">Исследовать меню</a>
+        </div>
+    </section>
+
+    <!-- Меню -->
+    <section class="menu" id="menu">
         <div class="container">
-            <div class="header-content">
-                <h1>Иван Петров</h1>
-                <p>Веб-разработчик</p>
+            <h2 class="section-title">Наше меню</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80" alt="Капучино">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Капучино</h3>
+                        <p>Идеальное сочетание эспрессо, молока и молочной пенки с нежным вкусом</p>
+                        <div class="price">250 руб.</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Латте">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Латте</h3>
+                        <p>Нежный кофейный напиток с большим количеством молока и воздушной пенкой</p>
+                        <div class="price">280 руб.</div>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-img">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=692&q=80" alt="Американо">
+                    </div>
+                    <div class="menu-content">
+                        <h3>Американо</h3>
+                        <p>Классический эспрессо с добавлением горячей воды для насыщенного вкуса</p>
+                        <div class="price">200 руб.</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <!-- Обо мне -->
+    <!-- О нас -->
     <section class="about">
         <div class="container">
-            <h2 class="section-title">Обо мне</h2>
+            <h2 class="section-title">О нашем кафе</h2>
             <div class="about-content">
-                <p>Я профессиональный веб-разработчик с 5-летним опытом создания современных и функциональных веб-сайтов. Специализируюсь на разработке адаптивных интерфейсов, оптимизации производительности и создании пользовательских интерфейсов, которые решают бизнес-задачи.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Услуги -->
-    <section class="services">
-        <div class="container">
-            <h2 class="section-title">Услуги</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>Разработка сайтов</h3>
-                    <p>Создаю современные адаптивные веб-сайты любой сложности - от визиток до корпоративных порталов.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Лендинги</h3>
-                    <p>Разрабатываю продающие landing pages с высокой конверсией и современным дизайном.</p>
-                </div>
-                <div class="service-card">
-                    <h3>Поддержка</h3>
-                    <p>Обеспечиваю техническую поддержку и обслуживание существующих веб-проектов.</p>
+                <p>Coffee House — это уютное пространство, где каждый может насладиться превосходным кофе, приготовленным из отборных зерен, и погрузиться в атмосферу тепла и комфорта.</p>
+                <p>Мы работаем с 2010 года и за это время стали любимым местом встреч для многих горожан. Наша команда бариста — настоящие профессионалы, которые вкладывают душу в каждую чашку кофе.</p>
+                <p>Помимо кофе, мы предлагаем широкий выбор десертов, выпечки и легких закусок, которые идеально дополнят ваш кофейный опыт.</p>
+                
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-number">12+</div>
+                        <div class="stat-text">Лет опыта</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-text">Видов кофе</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-text">Довольных клиентов</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Контакты -->
-    <section class="contacts">
+    <!-- Бронирование -->
+    <section class="reservation">
         <div class="container">
-            <h2 class="section-title">Контакты</h2>
-            <div class="contact-info">
-                <p>Email: <a href="mailto:ivan@example.com" class="email">ivan@example.com</a></p>
-            </div>
-            <a href="mailto:ivan@example.com" class="btn">Написать</a>
+            <h2 class="section-title">Заказать столик</h2>
+            <p>Хотите гарантированно получить лучший столик в нашем кафе? Забронируйте его заранее и наслаждайтесь идеальной атмосферой!</p>
+            <a href="#" class="btn btn-large">Забронировать сейчас</a>
         </div>
     </section>
 
     <!-- Футер -->
     <footer>
         <div class="container">
-            <p>&copy; 2024 Иван Петров. Все права защищены.</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> ул. Кофейная, 15</p>
+                    <p>Москва, Россия</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Часы работы</h3>
+                    <p><i class="far fa-clock"></i> Пн-Пт: 8:00 - 22:00</p>
+                    <p><i class="far fa-clock"></i> Сб-Вс: 9:00 - 23:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="far fa-envelope"></i> info@coffeehouse.ru</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Coffee House. Все права защищены.</p>
+            </div>
         </div>
     </footer>
 </body>
