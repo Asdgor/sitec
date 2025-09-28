@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Иван Петров - Веб-разработчик</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Шапка */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header-content p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        /* Секции */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        /* Обо мне */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        /* Услуги */
+        .services {
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        /* Контакты */
+        .contacts {
+            background: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+        }
+
+        .email {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+        }
+
+        /* Футер */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+            
+            .header-content p {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <h1>Иван Петров</h1>
+                <p>Веб-разработчик</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Обо мне -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">Обо мне</h2>
+            <div class="about-content">
+                <p>Я профессиональный веб-разработчик с 5-летним опытом создания современных и функциональных веб-сайтов. Специализируюсь на разработке адаптивных интерфейсов, оптимизации производительности и создании пользовательских интерфейсов, которые решают бизнес-задачи.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Разработка сайтов</h3>
+                    <p>Создаю современные адаптивные веб-сайты любой сложности - от визиток до корпоративных порталов.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Лендинги</h3>
+                    <p>Разрабатываю продающие landing pages с высокой конверсией и современным дизайном.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Поддержка</h3>
+                    <p>Обеспечиваю техническую поддержку и обслуживание существующих веб-проектов.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contacts">
+        <div class="container">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-info">
+                <p>Email: <a href="mailto:ivan@example.com" class="email">ivan@example.com</a></p>
+            </div>
+            <a href="mailto:ivan@example.com" class="btn">Написать</a>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Иван Петров. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
