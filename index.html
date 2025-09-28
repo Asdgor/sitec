@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechShop - Интернет-магазин электроники</title>
+    <title>СтройПроект - Строительная компания</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --secondary: #64748b;
-            --accent: #f1f5f9;
+            --primary: #1a365d;
+            --primary-dark: #0f2040;
+            --secondary: #c53030;
+            --accent: #e2e8f0;
             --light: #ffffff;
-            --dark: #0f172a;
-            --text: #334155;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --dark: #2d3748;
+            --text: #4a5568;
+            --border: #cbd5e0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
         }
         
         * {
@@ -27,15 +27,16 @@
         }
         
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Open Sans', sans-serif;
             line-height: 1.6;
             color: var(--text);
             background-color: var(--light);
         }
         
         h1, h2, h3, h4 {
-            color: var(--dark);
+            font-family: 'Montserrat', sans-serif;
             font-weight: 600;
+            color: var(--dark);
         }
         
         .container {
@@ -50,21 +51,22 @@
         
         .btn {
             display: inline-block;
-            background: var(--primary);
+            background: var(--secondary);
             color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 14px 32px;
+            border-radius: 4px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            font-size: 0.95rem;
-            box-shadow: var(--shadow);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .btn:hover {
-            background: var(--primary-dark);
+            background: #9c2626;
             transform: translateY(-2px);
             box-shadow: var(--shadow-lg);
         }
@@ -72,7 +74,7 @@
         .btn-outline {
             background: transparent;
             color: var(--primary);
-            border: 1px solid var(--primary);
+            border: 2px solid var(--primary);
         }
         
         .btn-outline:hover {
@@ -102,12 +104,12 @@
             gap: 10px;
             font-size: 1.5rem;
             font-weight: 700;
-            color: var(--dark);
+            color: var(--primary);
             text-decoration: none;
         }
         
         .logo i {
-            color: var(--primary);
+            color: var(--secondary);
         }
         
         nav ul {
@@ -118,14 +120,15 @@
         
         nav a {
             text-decoration: none;
-            color: var(--text);
+            color: var(--dark);
             font-weight: 500;
             transition: color 0.3s ease;
             position: relative;
+            font-size: 1rem;
         }
         
         nav a:hover {
-            color: var(--primary);
+            color: var(--secondary);
         }
         
         nav a::after {
@@ -135,7 +138,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--secondary);
             transition: width 0.3s ease;
         }
         
@@ -152,9 +155,43 @@
             cursor: pointer;
         }
         
-        /* Каталог */
-        .catalog {
-            background: var(--accent);
+        /* Баннер */
+        .banner {
+            height: 80vh;
+            background: linear-gradient(rgba(26, 54, 93, 0.8), rgba(15, 32, 64, 0.8)), 
+                        url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .banner-content {
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .banner p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+        
+        /* Услуги */
+        .services {
+            background: var(--light);
         }
         
         .section-title {
@@ -167,140 +204,171 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 80px;
             height: 4px;
-            background: var(--primary);
+            background: var(--secondary);
             margin: 15px auto;
-            border-radius: 2px;
         }
         
-        .products-grid {
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
         
-        .product-card {
+        .service-card {
             background: var(--light);
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
             box-shadow: var(--shadow);
             transition: all 0.4s ease;
-            position: relative;
+            border-top: 4px solid var(--primary);
         }
         
-        .product-card:hover {
+        .service-card:hover {
             transform: translateY(-10px);
             box-shadow: var(--shadow-lg);
         }
         
-        .product-image {
-            height: 220px;
-            overflow: hidden;
-            background: #f8fafc;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .product-image img {
-            max-width: 100%;
-            max-height: 180px;
-            object-fit: contain;
-            transition: transform 0.5s ease;
-        }
-        
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-        
-        .product-content {
-            padding: 20px;
-        }
-        
-        .product-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        
-        .product-content p {
-            color: var(--secondary);
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-        }
-        
-        .product-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .product-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .product-actions .btn {
-            flex: 1;
-            text-align: center;
-            padding: 10px;
-        }
-        
-        /* Доставка и оплата */
-        .delivery {
-            background: var(--light);
-        }
-        
-        .delivery-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .delivery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-        
-        .delivery-item {
-            text-align: center;
-            padding: 30px 20px;
-            border-radius: 12px;
+        .service-icon {
+            width: 80px;
+            height: 80px;
             background: var(--accent);
-            transition: all 0.3s ease;
-        }
-        
-        .delivery-item:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow);
-        }
-        
-        .delivery-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 1.8rem;
+            margin: 0 auto 25px;
+            color: var(--primary);
+            font-size: 2rem;
         }
         
-        .delivery-item h3 {
-            font-size: 1.3rem;
+        .service-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
+        }
+        
+        .service-card p {
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        
+        /* Проекты */
+        .projects {
+            background: var(--accent);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: var(--light);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .project-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .project-content p {
+            color: var(--text);
+            margin-bottom: 15px;
+        }
+        
+        /* Контакты */
+        .contacts {
+            background: var(--light);
+        }
+        
+        .contacts-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-details p {
+            color: var(--text);
+        }
+        
+        .map-placeholder {
+            height: 300px;
+            background: var(--accent);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: 600;
         }
         
         /* Подвал */
         footer {
-            background: var(--dark);
+            background: var(--primary);
             color: var(--light);
-            padding: 60px 0 20px;
+            padding: 50px 0 20px;
         }
         
         .footer-content {
@@ -321,20 +389,22 @@
             opacity: 0.8;
         }
         
-        .contact-info {
-            margin-bottom: 20px;
+        .footer-section ul {
+            list-style: none;
         }
         
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .footer-section ul li {
             margin-bottom: 10px;
         }
         
-        .contact-item i {
-            color: var(--primary);
-            width: 20px;
+        .footer-section ul li a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: white;
         }
         
         .social-icons {
@@ -357,7 +427,7 @@
         }
         
         .social-icons a:hover {
-            background: var(--primary);
+            background: var(--secondary);
             transform: translateY(-3px);
         }
         
@@ -370,10 +440,10 @@
         }
         
         /* Анимации */
-        @keyframes fadeIn {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -383,6 +453,10 @@
         
         /* Адаптивность */
         @media (max-width: 992px) {
+            .banner h1 {
+                font-size: 2.8rem;
+            }
+            
             .section-title {
                 font-size: 2.2rem;
             }
@@ -420,26 +494,33 @@
                 display: block;
             }
             
+            .banner h1 {
+                font-size: 2.2rem;
+            }
+            
+            .banner p {
+                font-size: 1.1rem;
+            }
+            
             .section-title {
                 font-size: 1.8rem;
             }
             
-            .products-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
+            .services-grid, .projects-grid {
+                grid-template-columns: 1fr;
             }
         }
         
         @media (max-width: 576px) {
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+            
             .section-title {
                 font-size: 1.6rem;
             }
             
-            .product-actions {
-                flex-direction: column;
-            }
-            
-            .footer-content {
+            .contacts-content {
                 grid-template-columns: 1fr;
             }
         }
@@ -451,8 +532,8 @@
         <div class="container">
             <div class="header-content">
                 <a href="#" class="logo">
-                    <i class="fas fa-laptop-code"></i>
-                    <span>TechShop</span>
+                    <i class="fas fa-hard-hat"></i>
+                    <span>СтройПроект</span>
                 </a>
                 
                 <nav>
@@ -461,8 +542,8 @@
                     </button>
                     <ul id="nav-menu">
                         <li><a href="#">Главная</a></li>
-                        <li><a href="#catalog">Каталог</a></li>
-                        <li><a href="#delivery">Доставка</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#projects">Проекты</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                     </ul>
                 </nav>
@@ -470,102 +551,157 @@
         </div>
     </header>
 
-    <!-- Каталог -->
-    <section class="catalog" id="catalog">
+    <!-- Баннер -->
+    <section class="banner">
         <div class="container">
-            <h2 class="section-title">Каталог товаров</h2>
-            <div class="products-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Ноутбук">
+            <div class="banner-content">
+                <h1>Мы строим будущее</h1>
+                <p>Профессиональный подход к строительству и ремонту с 2005 года. Качество, надежность и соблюдение сроков.</p>
+                <a href="#contacts" class="btn">Связаться с нами</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
                     </div>
-                    <div class="product-content">
-                        <h3>Ноутбук Gaming Pro</h3>
-                        <p>Мощный игровой ноутбук с процессором Intel Core i7 и видеокартой RTX 3060</p>
-                        <div class="product-price">89 999 ₽</div>
-                        <div class="product-actions">
-                            <button class="btn">Купить</button>
-                            <button class="btn btn-outline">В корзину</button>
-                        </div>
+                    <h3>Строительство домов</h3>
+                    <p>Полный цикл строительства частных домов и коттеджей под ключ. От проектирования до сдачи объекта.</p>
+                    <a href="#" class="btn btn-outline">Подробнее</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Ремонт и отделка</h3>
+                    <p>Качественный ремонт квартир, офисов и коммерческих помещений. Современные материалы и технологии.</p>
+                    <a href="#" class="btn btn-outline">Подробнее</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3>Проектирование</h3>
+                    <p>Разработка индивидуальных и типовых проектов. Архитектурное планирование и дизайн интерьеров.</p>
+                    <a href="#" class="btn btn-outline">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Проекты -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Наши проекты</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600585154340-6f2c0a6ee037?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Загородный дом">
+                    </div>
+                    <div class="project-content">
+                        <h3>Загородный дом "Престиж"</h3>
+                        <p>Современный двухэтажный коттедж с панорамными окнами и террасой. Площадь 240 м².</p>
+                        <a href="#" class="btn btn-outline">Подробнее о проекте</a>
                     </div>
                 </div>
                 
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1511385348-a52b4a160dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1133&q=80" alt="Смартфон">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1453&q=80" alt="Квартира в центре">
                     </div>
-                    <div class="product-content">
-                        <h3>Смартфон Galaxy X</h3>
-                        <p>Флагманский смартфон с тройной камерой 108 Мп и экраном AMOLED 6.7"</p>
-                        <div class="product-price">54 999 ₽</div>
-                        <div class="product-actions">
-                            <button class="btn">Купить</button>
-                            <button class="btn btn-outline">В корзину</button>
-                        </div>
+                    <div class="project-content">
+                        <h3>Апартаменты "Центральные"</h3>
+                        <p>Капитальный ремонт трехкомнатной квартиры в историческом центре города. Стиль лофт.</p>
+                        <a href="#" class="btn btn-outline">Подробнее о проекте</a>
                     </div>
                 </div>
                 
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Умные часы">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1392&q=80" alt="Офисное здание">
                     </div>
-                    <div class="product-content">
-                        <h3>Умные часы Watch Pro</h3>
-                        <p>Смарт-часы с функцией отслеживания активности и уведомлениями</p>
-                        <div class="product-price">24 999 ₽</div>
-                        <div class="product-actions">
-                            <button class="btn">Купить</button>
-                            <button class="btn btn-outline">В корзину</button>
-                        </div>
+                    <div class="project-content">
+                        <h3>Бизнес-центр "Нева"</h3>
+                        <p>Строительство современного офисного здания класса А. Общая площадь 5000 м².</p>
+                        <a href="#" class="btn btn-outline">Подробнее о проекте</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Доставка и оплата -->
-    <section class="delivery" id="delivery">
+    <!-- Контакты -->
+    <section class="contacts" id="contacts">
         <div class="container">
-            <h2 class="section-title">Доставка и оплата</h2>
-            <div class="delivery-content">
-                <p>Мы предлагаем удобные способы доставки и оплаты для вашего комфорта. Все заказы обрабатываются в течение 24 часов после оформления.</p>
+            <h2 class="section-title">Контакты</h2>
+            <div class="contacts-content">
+                <div class="contact-info">
+                    <h3>Свяжитесь с нами</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Адрес</h4>
+                            <p>г. Москва, ул. Строителей, 15</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Телефон</h4>
+                            <p>+7 (495) 123-45-67</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@stroiproject.ru</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Режим работы</h4>
+                            <p>Пн-Пт: 9:00 - 18:00</p>
+                            <p>Сб: 10:00 - 16:00</p>
+                        </div>
+                    </div>
+                </div>
                 
-                <div class="delivery-grid">
-                    <div class="delivery-item">
-                        <div class="delivery-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                        <h3>Быстрая доставка</h3>
-                        <p>Доставка по всей России от 1 до 5 дней в зависимости от региона</p>
-                    </div>
-                    
-                    <div class="delivery-item">
-                        <div class="delivery-icon">
-                            <i class="fas fa-credit-card"></i>
-                        </div>
-                        <h3>Удобная оплата</h3>
-                        <p>Оплата картой, наличными или онлайн при получении заказа</p>
-                    </div>
-                    
-                    <div class="delivery-item">
-                        <div class="delivery-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3>Гарантия качества</h3>
-                        <p>Гарантия на все товары от 1 года, быстрый возврат и обмен</p>
-                    </div>
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <span>Карта расположения офиса</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Подвал -->
-    <footer id="contacts">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>О компании</h3>
-                    <p>TechShop - современный интернет-магазин электроники с широким ассортиментом качественной техники по доступным ценам.</p>
+                    <p>Строительная компания "СтройПроект" работает на рынке с 2005 года. Мы специализируемся на строительстве, ремонте и проектировании жилых и коммерческих объектов.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-vk"></i></a>
                         <a href="#"><i class="fab fa-telegram"></i></a>
@@ -575,33 +711,25 @@
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>г. Москва, ул. Технологическая, 15</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>+7 (495) 123-45-67</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@techshop.ru</span>
-                        </div>
-                    </div>
+                    <h3>Услуги</h3>
+                    <ul>
+                        <li><a href="#">Строительство домов</a></li>
+                        <li><a href="#">Ремонт и отделка</a></li>
+                        <li><a href="#">Проектирование</a></li>
+                        <li><a href="#">Консультации</a></li>
+                    </ul>
                 </div>
                 
                 <div class="footer-section">
-                    <h3>Часы работы</h3>
-                    <p>Пн-Пт: 9:00 - 20:00</p>
-                    <p>Сб-Вс: 10:00 - 18:00</p>
-                    <p>Техподдержка: круглосуточно</p>
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва, ул. Строителей, 15</p>
+                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> info@stroiproject.ru</p>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 TechShop. Все права защищены.</p>
+                <p>&copy; 2023 СтройПроект. Все права защищены.</p>
             </div>
         </div>
     </footer>
