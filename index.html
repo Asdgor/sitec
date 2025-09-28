@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coffee House - Уютное кафе</title>
+    <title>TechShop - Интернет-магазин электроники</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #8B5A2B;
-            --secondary: #D4A574;
-            --accent: #F7E9D7;
-            --light: #FFF9F0;
-            --dark: #3E2723;
-            --text: #5D4037;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #64748b;
+            --accent: #f1f5f9;
+            --light: #ffffff;
+            --dark: #0f172a;
+            --text: #334155;
+            --border: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
         
         * {
@@ -23,17 +27,15 @@
         }
         
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: var(--text);
             background-color: var(--light);
-            overflow-x: hidden;
         }
         
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
             color: var(--dark);
+            font-weight: 600;
         }
         
         .container {
@@ -50,85 +52,114 @@
             display: inline-block;
             background: var(--primary);
             color: white;
-            padding: 14px 32px;
-            border-radius: 50px;
+            padding: 12px 24px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
-            border: 2px solid var(--primary);
+            border: none;
             cursor: pointer;
-            font-size: 1rem;
-            box-shadow: 0 4px 15px rgba(139, 90, 43, 0.2);
+            font-size: 0.95rem;
+            box-shadow: var(--shadow);
         }
         
         .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-outline {
             background: transparent;
             color: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(139, 90, 43, 0.3);
+            border: 1px solid var(--primary);
         }
         
-        .btn-large {
-            padding: 16px 40px;
-            font-size: 1.1rem;
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
         }
         
-        /* Герой-секция */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(135deg, rgba(139, 90, 43, 0.8), rgba(212, 165, 116, 0.8)), 
-                        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
-            background-size: cover;
-            background-position: center;
+        /* Шапка */
+        header {
+            background: var(--light);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
         }
         
-        .hero::before {
+        .logo i {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        nav a:hover {
+            color: var(--primary);
+        }
+        
+        nav a::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -5px;
             left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
             width: 100%;
-            height: 100px;
-            background: linear-gradient(to top, var(--light), transparent);
-            z-index: 1;
         }
         
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-            z-index: 2;
-            animation: fadeInUp 1s ease;
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        }
-        
-        .hero p {
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
             font-size: 1.5rem;
-            margin-bottom: 40px;
-            font-weight: 300;
-            opacity: 0.9;
+            color: var(--dark);
+            cursor: pointer;
         }
         
-        /* Меню */
-        .menu {
-            background-color: var(--light);
+        /* Каталог */
+        .catalog {
+            background: var(--accent);
         }
         
         .section-title {
             text-align: center;
-            font-size: 2.8rem;
+            font-size: 2.5rem;
             margin-bottom: 60px;
             position: relative;
         }
@@ -136,185 +167,136 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 80px;
+            width: 60px;
             height: 4px;
-            background: var(--secondary);
+            background: var(--primary);
             margin: 15px auto;
             border-radius: 2px;
         }
         
-        .menu-grid {
+        .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
         }
         
-        .menu-item {
-            background: white;
-            border-radius: 15px;
+        .product-card {
+            background: var(--light);
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: var(--shadow);
             transition: all 0.4s ease;
             position: relative;
         }
         
-        .menu-item:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
         
-        .menu-item-img {
+        .product-image {
             height: 220px;
             overflow: hidden;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
         
-        .menu-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .product-image img {
+            max-width: 100%;
+            max-height: 180px;
+            object-fit: contain;
             transition: transform 0.5s ease;
         }
         
-        .menu-item:hover img {
-            transform: scale(1.1);
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
         }
         
-        .menu-content {
-            padding: 25px;
-            text-align: center;
+        .product-content {
+            padding: 20px;
         }
         
-        .menu-content h3 {
-            font-size: 1.8rem;
+        .product-content h3 {
+            font-size: 1.3rem;
             margin-bottom: 10px;
         }
         
-        .menu-content p {
-            color: #777;
+        .product-content p {
+            color: var(--secondary);
             margin-bottom: 15px;
             font-size: 0.95rem;
         }
         
-        .price {
+        .product-price {
             font-size: 1.5rem;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--primary);
+            margin-bottom: 15px;
         }
         
-        /* О нас */
-        .about {
-            background: linear-gradient(135deg, var(--accent), var(--light));
-            position: relative;
-            overflow: hidden;
+        .product-actions {
+            display: flex;
+            gap: 10px;
         }
         
-        .about::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80');
-            background-size: cover;
-            border-radius: 50%;
-            opacity: 0.1;
+        .product-actions .btn {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
         }
         
-        .about-content {
+        /* Доставка и оплата */
+        .delivery {
+            background: var(--light);
+        }
+        
+        .delivery-content {
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 1;
         }
         
-        .about-content p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-        
-        .about-stats {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
+        .delivery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
             margin-top: 50px;
         }
         
-        .stat {
+        .delivery-item {
             text-align: center;
+            padding: 30px 20px;
+            border-radius: 12px;
+            background: var(--accent);
+            transition: all 0.3s ease;
         }
         
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 5px;
+        .delivery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
         }
         
-        .stat-text {
-            font-size: 1rem;
-            color: var(--text);
-        }
-        
-        /* Бронирование */
-        .reservation {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        .delivery-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
             color: white;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            font-size: 1.8rem;
         }
         
-        .reservation::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80');
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-            z-index: 0;
+        .delivery-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
         }
         
-        .reservation .container {
-            position: relative;
-            z-index: 1;
-        }
-        
-        .reservation .section-title {
-            color: white;
-        }
-        
-        .reservation .section-title::after {
-            background: white;
-        }
-        
-        .reservation p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            opacity: 0.9;
-        }
-        
-        .reservation .btn {
-            background: white;
-            color: var(--primary);
-            border-color: white;
-        }
-        
-        .reservation .btn:hover {
-            background: transparent;
-            color: white;
-        }
-        
-        /* Футер */
+        /* Подвал */
         footer {
             background: var(--dark);
             color: var(--light);
@@ -329,14 +311,30 @@
         }
         
         .footer-section h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
-            color: var(--secondary);
+            color: white;
         }
         
         .footer-section p {
             margin-bottom: 10px;
             opacity: 0.8;
+        }
+        
+        .contact-info {
+            margin-bottom: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+            width: 20px;
         }
         
         .social-icons {
@@ -359,7 +357,7 @@
         }
         
         .social-icons a:hover {
-            background: var(--secondary);
+            background: var(--primary);
             transform: translateY(-3px);
         }
         
@@ -372,10 +370,10 @@
         }
         
         /* Анимации */
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -385,16 +383,8 @@
         
         /* Адаптивность */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.3rem;
-            }
-            
             .section-title {
-                font-size: 2.4rem;
+                font-size: 2.2rem;
             }
         }
         
@@ -403,154 +393,249 @@
                 padding: 60px 0;
             }
             
-            .hero h1 {
-                font-size: 2.8rem;
+            .header-content {
+                padding: 15px 0;
             }
             
-            .hero p {
-                font-size: 1.1rem;
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--light);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: var(--shadow);
+                text-align: center;
+                gap: 15px;
+            }
+            
+            nav ul.active {
+                display: flex;
+                animation: fadeIn 0.3s ease;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
             }
             
             .section-title {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
             
-            .about-stats {
-                flex-direction: column;
-                gap: 30px;
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
             }
         }
         
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .section-title {
+                font-size: 1.6rem;
             }
             
-            .menu-grid {
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .footer-content {
                 grid-template-columns: 1fr;
-            }
-            
-            .btn {
-                padding: 12px 25px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Герой-секция -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Coffee House</h1>
-            <p>Наслаждайтесь искусством кофе в уютной атмосфере</p>
-            <a href="#menu" class="btn btn-large">Исследовать меню</a>
-        </div>
-    </section>
-
-    <!-- Меню -->
-    <section class="menu" id="menu">
+    <!-- Шапка -->
+    <header>
         <div class="container">
-            <h2 class="section-title">Наше меню</h2>
-            <div class="menu-grid">
-                <div class="menu-item">
-                    <div class="menu-item-img">
-                        <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1035&q=80" alt="Капучино">
-                    </div>
-                    <div class="menu-content">
-                        <h3>Капучино</h3>
-                        <p>Идеальное сочетание эспрессо, молока и молочной пенки с нежным вкусом</p>
-                        <div class="price">250 руб.</div>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <div class="menu-item-img">
-                        <img src="https://images.unsplash.com/photo-1561047029-3000c68339ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" alt="Латте">
-                    </div>
-                    <div class="menu-content">
-                        <h3>Латте</h3>
-                        <p>Нежный кофейный напиток с большим количеством молока и воздушной пенкой</p>
-                        <div class="price">280 руб.</div>
-                    </div>
-                </div>
-                <div class="menu-item">
-                    <div class="menu-item-img">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=692&q=80" alt="Американо">
-                    </div>
-                    <div class="menu-content">
-                        <h3>Американо</h3>
-                        <p>Классический эспрессо с добавлением горячей воды для насыщенного вкуса</p>
-                        <div class="price">200 руб.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- О нас -->
-    <section class="about">
-        <div class="container">
-            <h2 class="section-title">О нашем кафе</h2>
-            <div class="about-content">
-                <p>Coffee House — это уютное пространство, где каждый может насладиться превосходным кофе, приготовленным из отборных зерен, и погрузиться в атмосферу тепла и комфорта.</p>
-                <p>Мы работаем с 2010 года и за это время стали любимым местом встреч для многих горожан. Наша команда бариста — настоящие профессионалы, которые вкладывают душу в каждую чашку кофе.</p>
-                <p>Помимо кофе, мы предлагаем широкий выбор десертов, выпечки и легких закусок, которые идеально дополнят ваш кофейный опыт.</p>
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-laptop-code"></i>
+                    <span>TechShop</span>
+                </a>
                 
-                <div class="about-stats">
-                    <div class="stat">
-                        <div class="stat-number">12+</div>
-                        <div class="stat-text">Лет опыта</div>
+                <nav>
+                    <button class="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <ul id="nav-menu">
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#catalog">Каталог</a></li>
+                        <li><a href="#delivery">Доставка</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Каталог -->
+    <section class="catalog" id="catalog">
+        <div class="container">
+            <h2 class="section-title">Каталог товаров</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80" alt="Ноутбук">
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">50+</div>
-                        <div class="stat-text">Видов кофе</div>
+                    <div class="product-content">
+                        <h3>Ноутбук Gaming Pro</h3>
+                        <p>Мощный игровой ноутбук с процессором Intel Core i7 и видеокартой RTX 3060</p>
+                        <div class="product-price">89 999 ₽</div>
+                        <div class="product-actions">
+                            <button class="btn">Купить</button>
+                            <button class="btn btn-outline">В корзину</button>
+                        </div>
                     </div>
-                    <div class="stat">
-                        <div class="stat-number">1000+</div>
-                        <div class="stat-text">Довольных клиентов</div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1511385348-a52b4a160dc2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1133&q=80" alt="Смартфон">
+                    </div>
+                    <div class="product-content">
+                        <h3>Смартфон Galaxy X</h3>
+                        <p>Флагманский смартфон с тройной камерой 108 Мп и экраном AMOLED 6.7"</p>
+                        <div class="product-price">54 999 ₽</div>
+                        <div class="product-actions">
+                            <button class="btn">Купить</button>
+                            <button class="btn btn-outline">В корзину</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1064&q=80" alt="Умные часы">
+                    </div>
+                    <div class="product-content">
+                        <h3>Умные часы Watch Pro</h3>
+                        <p>Смарт-часы с функцией отслеживания активности и уведомлениями</p>
+                        <div class="product-price">24 999 ₽</div>
+                        <div class="product-actions">
+                            <button class="btn">Купить</button>
+                            <button class="btn btn-outline">В корзину</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Бронирование -->
-    <section class="reservation">
+    <!-- Доставка и оплата -->
+    <section class="delivery" id="delivery">
         <div class="container">
-            <h2 class="section-title">Заказать столик</h2>
-            <p>Хотите гарантированно получить лучший столик в нашем кафе? Забронируйте его заранее и наслаждайтесь идеальной атмосферой!</p>
-            <a href="#" class="btn btn-large">Забронировать сейчас</a>
+            <h2 class="section-title">Доставка и оплата</h2>
+            <div class="delivery-content">
+                <p>Мы предлагаем удобные способы доставки и оплаты для вашего комфорта. Все заказы обрабатываются в течение 24 часов после оформления.</p>
+                
+                <div class="delivery-grid">
+                    <div class="delivery-item">
+                        <div class="delivery-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Быстрая доставка</h3>
+                        <p>Доставка по всей России от 1 до 5 дней в зависимости от региона</p>
+                    </div>
+                    
+                    <div class="delivery-item">
+                        <div class="delivery-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>Удобная оплата</h3>
+                        <p>Оплата картой, наличными или онлайн при получении заказа</p>
+                    </div>
+                    
+                    <div class="delivery-item">
+                        <div class="delivery-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Гарантия качества</h3>
+                        <p>Гарантия на все товары от 1 года, быстрый возврат и обмен</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Футер -->
-    <footer>
+    <!-- Подвал -->
+    <footer id="contacts">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Адрес</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> ул. Кофейная, 15</p>
-                    <p>Москва, Россия</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Часы работы</h3>
-                    <p><i class="far fa-clock"></i> Пн-Пт: 8:00 - 22:00</p>
-                    <p><i class="far fa-clock"></i> Сб-Вс: 9:00 - 23:00</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Контакты</h3>
-                    <p><i class="fas fa-phone"></i> +7 (495) 123-45-67</p>
-                    <p><i class="far fa-envelope"></i> info@coffeehouse.ru</p>
+                    <h3>О компании</h3>
+                    <p>TechShop - современный интернет-магазин электроники с широким ассортиментом качественной техники по доступным ценам.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-vk"></i></a>
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>г. Москва, ул. Технологическая, 15</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+7 (495) 123-45-67</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@techshop.ru</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 9:00 - 20:00</p>
+                    <p>Сб-Вс: 10:00 - 18:00</p>
+                    <p>Техподдержка: круглосуточно</p>
+                </div>
             </div>
+            
             <div class="footer-bottom">
-                <p>&copy; 2023 Coffee House. Все права защищены.</p>
+                <p>&copy; 2023 TechShop. Все права защищены.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('nav-menu').classList.toggle('active');
+        });
+        
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('nav-menu').classList.remove('active');
+            });
+        });
+        
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
