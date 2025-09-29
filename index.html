@@ -263,6 +263,46 @@
             text-align: center;
         }
 
+        /* Transition Overlay */
+        .transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+        }
+
+        .transition-content {
+            text-align: center;
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: #00ff00;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
@@ -280,6 +320,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Transition Overlay -->
+    <div class="transition-overlay" id="transitionOverlay">
+        <div class="transition-content">
+            <div class="loading-text" id="loadingText">Инициализация защищенного соединения...</div>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -353,6 +403,7 @@
                 <div class="form-group">
                     <label>Кодовое слово для VIP доступа</label>
                     <input type="password" id="vipCode" placeholder="Введите кодовое слово">
+                    <small style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Подсказка: спросите у администратора</small>
                 </div>
             </div>
             
@@ -370,16 +421,64 @@
         function checkVIPAccess() {
             const code = document.getElementById('vipCode').value;
             if (code === "sss333darkweb") {
-                // Плавный переход
-                document.body.style.opacity = '0';
-                document.body.style.transition = 'opacity 0.8s ease';
-                setTimeout(() => {
-                    window.location.href = 'darknet.html';
-                }, 800);
+                startDarknetTransition();
             } else {
                 alert('Неверное кодовое слово. Для получения кода обратитесь к администратору.');
+                // Добавляем эффект тряски
+                const input = document.getElementById('vipCode');
+                input.style.animation = 'shake 0.5s';
+                setTimeout(() => input.style.animation = '', 500);
             }
         }
+
+        function startDarknetTransition() {
+            const overlay = document.getElementById('transitionOverlay');
+            const progress = document.getElementById('loadingProgress');
+            const text = document.getElementById('loadingText');
+            
+            // Показываем оверлей
+            overlay.style.display = 'flex';
+            
+            // Симуляция загрузки Tor
+            const steps = [
+                { percent: 20, message: "Подключение к сети Tor..." },
+                { percent: 40, message: "Установка защищенного соединения..." },
+                { percent: 60, message: "Шифрование канала..." },
+                { percent: 80, message: "Аутентификация..." },
+                { percent: 100, message: "Доступ получен. Перенаправление..." }
+            ];
+            
+            let currentStep = 0;
+            
+            function nextStep() {
+                if (currentStep < steps.length) {
+                    const step = steps[currentStep];
+                    progress.style.width = step.percent + '%';
+                    text.textContent = step.message;
+                    currentStep++;
+                    
+                    setTimeout(nextStep, 800);
+                } else {
+                    // Переход на даркнет
+                    setTimeout(() => {
+                        window.location.href = 'darknet.html';
+                    }, 1000);
+                }
+            }
+            
+            nextStep();
+        }
+
+        // Анимация тряски для ошибки
+        const shakeStyle = document.createElement('style');
+        shakeStyle.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+        `;
+        document.head.appendChild(shakeStyle);
 
         // Параллакс эффект для навигации
         window.addEventListener('scroll', function() {
