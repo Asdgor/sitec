@@ -3,60 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Cat Café</title>
+    <title>Nexus Café - Digital Experience</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="cafe-body">
     <div class="cafe-container">
+        <!-- Анимированный фон -->
+        <div class="cafe-background">
+            <div class="floating-coffee"></div>
+            <div class="floating-code"></div>
+        </div>
+
         <header class="cafe-header">
-            <h1>Black Cat Café</h1>
-            <p>Кофе, уют и приватность</p>
+            <div class="logo">
+                <i class="fas fa-laptop-code"></i>
+                <span>Nexus Café</span>
+            </div>
+            <p class="tagline">Where coffee meets code</p>
         </header>
 
         <nav class="cafe-nav">
-            <a href="#menu">Меню</a>
-            <a href="#about">О нас</a>
-            <a href="#reserve">Бронирование</a>
+            <a href="#about" class="nav-item">
+                <i class="fas fa-mug-hot"></i>
+                <span>О нас</span>
+            </a>
+            <a href="#menu" class="nav-item">
+                <i class="fas fa-coffee"></i>
+                <span>Меню</span>
+            </a>
+            <a href="#reserve" class="nav-item">
+                <i class="fas fa-key"></i>
+                <span>Приватный доступ</span>
+            </a>
         </nav>
 
-        <section id="menu" class="cafe-menu">
-            <h2>Наше меню</h2>
-            <div class="menu-items">
-                <div class="menu-item">
-                    <h3>Эспрессо</h3>
-                    <p>250₽</p>
-                </div>
-                <div class="menu-item">
-                    <h3>Капучино</h3>
-                    <p>320₽</p>
-                </div>
-                <div class="menu-item">
-                    <h3>Черный кот</h3>
-                    <p>380₽</p>
-                </div>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-main">Digital</span>
+                    <span class="title-accent">Sanctuary</span>
+                </h1>
+                <p class="hero-description">
+                    Премиум кофе-спот для разработчиков, крипто-энтузиастов 
+                    и цифровых кочевников. Полная анонимность гарантирована.
+                </p>
             </div>
         </section>
 
-        <section id="reserve" class="reservation-section">
-            <h2>Забронировать столик</h2>
-            <p>Для бронирования введите кодовое слово</p>
-            
-            <div class="reservation-form">
-                <input type="password" id="reservationCode" placeholder="Кодовое слово">
-                <button onclick="checkReservationCode()">Забронировать</button>
+        <section id="reserve" class="access-section">
+            <div class="access-card">
+                <div class="access-header">
+                    <i class="fas fa-shield-alt"></i>
+                    <h2>Приватный доступ</h2>
+                </div>
+                <p class="access-description">
+                    Для бронирования приватной зоны требуется кодовое слово
+                </p>
+                
+                <div class="access-form">
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="accessCode" placeholder="Введите кодовое слово">
+                    </div>
+                    <button class="access-btn" onclick="checkAccess()">
+                        <span>Получить доступ</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <div class="access-hint">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Подсказка: спросите у баристы о "специальном доступе"</span>
+                </div>
             </div>
-            
-            <p class="hint">Подсказка: спросите у баристы</p>
         </section>
     </div>
 
     <script>
-        function checkReservationCode() {
-            const code = document.getElementById('reservationCode').value;
+        function checkAccess() {
+            const code = document.getElementById('accessCode').value;
             if (code === "sss333darkweb") {
-                window.location.href = "darknet.html";
+                // Анимация перехода
+                document.body.style.animation = "fadeOut 0.8s forwards";
+                setTimeout(() => {
+                    window.location.href = "darknet.html";
+                }, 800);
             } else {
-                alert("Неверное кодовое слово. Спросите у баристы.");
+                // Анимация ошибки
+                const input = document.getElementById('accessCode');
+                input.style.animation = "shake 0.5s";
+                setTimeout(() => input.style.animation = "", 500);
             }
         }
     </script>
