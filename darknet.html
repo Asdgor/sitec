@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Market - Private Access</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="darknet-body">
+    <div class="darknet-container">
+        <!-- Этап 1: Приветствие -->
+        <section id="welcome" class="welcome-section">
+            <div class="welcome-content">
+                <h1 class="glitch-text">ДОБРО ПОЖАЛОВАТЬ В ТЕНЕВОЙ СЕГМЕНТ</h1>
+                <div class="security-info">
+                    <h3>МЕРЫ БЕЗОПАСНОСТИ:</h3>
+                    <ul>
+                        <li>✓ Используйте Tor Browser</li>
+                        <li>✓ Отключите JavaScript</li>
+                        <li>✓ Не используйте личные данные</li>
+                        <li>✓ Выходите через безопасные шлюзы</li>
+                    </ul>
+                </div>
+                <button onclick="showTorConnection()">ПОДКЛЮЧИТЬСЯ К СЕТИ</button>
+            </div>
+        </section>
+
+        <!-- Этап 2: Подключение Tor -->
+        <section id="tor-connection" class="tor-section hidden">
+            <div class="terminal">
+                <div class="terminal-line">Инициализация защищенного соединения...</div>
+                <div class="terminal-line">Поиск узлов Tor: <span class="green-text">3/7</span></div>
+                <div class="terminal-line">Выходной узел: <span class="yellow-text">[DE] Berlin</span></div>
+                <div class="terminal-line">Шифрование: <span class="green-text">AES-256</span></div>
+                <div class="terminal-line"><span class="green-text">✓ Соединение установлено</span></div>
+                <button onclick="showMarketplace()">ВОЙТИ НА РЫНОК</button>
+            </div>
+        </section>
+
+        <!-- Этап 3: Маркетплейс -->
+        <section id="marketplace" class="marketplace-section hidden">
+            <header class="market-header">
+                <h1>SHADOW MARKET</h1>
+                <div class="market-stats">
+                    <span>Online: <span id="userCount">1,847</span></span>
+                    <span>BTC: $<span id="btcPrice">47,231</span></span>
+                </div>
+            </header>
+
+            <nav class="market-nav">
+                <button class="nav-btn active" data-category="weapons">Оружие</button>
+                <button class="nav-btn" data-category="services">Услуги</button>
+                <button class="nav-btn" data-category="digital">Цифровые товары</button>
+            </nav>
+
+            <!-- Оружие -->
+            <div class="category-content" id="weapons-content">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-image" style="background: #333;"></div>
+                        <div class="product-info">
+                            <h3>Glock 19 Gen 5</h3>
+                            <p>Новый, серийный номер удален</p>
+                            <div class="product-price">2.8 BTC</div>
+                            <button class="order-btn" data-product="Glock 19">Заказать</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image" style="background: #333;"></div>
+                        <div class="product-info">
+                            <h3>AK-74M Укороченный</h3>
+                            <p>Модифицированная версия</p>
+                            <div class="product-price">5.2 BTC</div>
+                            <button class="order-btn" data-product="AK-74M">Заказать</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image" style="background: #333;"></div>
+                        <div class="product-info">
+                            <h3>Снайперская винтовка M24</h3>
+                            <p>С полной оптикой</p>
+                            <div class="product-price">8.5 BTC</div>
+                            <button class="order-btn" data-product="M24">Заказать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Услуги -->
+            <div class="category-content hidden" id="services-content">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-info">
+                            <h3>Физическая охрана</h3>
+                            <p>Профессиональная охрана 24/7</p>
+                            <div class="product-price">1.5 BTC/месяц</div>
+                            <button class="order-btn" data-product="Охрана">Заказать</button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card premium-card">
+                        <div class="product-info">
+                            <h3>VIP Эскортер</h3>
+                            <p>Бывший спецназ, полный комплекс</p>
+                            <div class="product-price">3.0 BTC/месяц</div>
+                            <button class="order-btn" data-product="Эскортер">Заказать</button>
+                        </div>
+                    </div>
+
+                    <div class="product-card locked-card">
+                        <div class="product-info">
+                            <h3>🔒 Специальные услуги</h3>
+                            <p>Требуется верификация уровня 3</p>
+                            <div class="product-price">— BTC</div>
+                            <button class="locked-btn">ДОСТУП ЗАКРЫТ</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно заказа -->
+        <div id="orderModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Оформление заказа</h2>
+                <p>Товар: <span id="productName"></span></p>
+                
+                <div class="payment-info">
+                    <h3>Реквизиты для оплаты:</h3>
+                    <div class="crypto-address">
+                        <strong>BTC Address:</strong>
+                        <code>1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</code>
+                    </div>
+                    <p class="warning">Отправляйте точную сумму! После оплаты закройте эту страницу.</p>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Для связи:</h3>
+                    <p>После оплаты используйте этот ID для связи в Telegram:</p>
+                    <code>@shadow_support_bot</code>
+                    <p class="note">Поддержка свяжется с вами в течение часа</p>
+                </div>
+
+                <button onclick="closeOrderModal()">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
