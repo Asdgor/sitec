@@ -3,99 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Café - Digital Experience</title>
+    <title>Black Lotus Café - Premium Coffee Experience</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="cafe-body">
-    <div class="cafe-container">
-        <!-- Анимированный фон -->
-        <div class="cafe-background">
-            <div class="floating-coffee"></div>
-            <div class="floating-code"></div>
-        </div>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        <header class="cafe-header">
-            <div class="logo">
-                <i class="fas fa-laptop-code"></i>
-                <span>Nexus Café</span>
-            </div>
-            <p class="tagline">Where coffee meets code</p>
-        </header>
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #FFD700;
+            --light: #FFF8DC;
+            --dark: #3C2F2F;
+            --text: #333333;
+        }
 
-        <nav class="cafe-nav">
-            <a href="#about" class="nav-item">
-                <i class="fas fa-mug-hot"></i>
-                <span>О нас</span>
-            </a>
-            <a href="#menu" class="nav-item">
-                <i class="fas fa-coffee"></i>
-                <span>Меню</span>
-            </a>
-            <a href="#reserve" class="nav-item">
-                <i class="fas fa-key"></i>
-                <span>Приватный доступ</span>
-            </a>
-        </nav>
+        body {
+            font-family: 'Playfair Display', Georgia, serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text);
+            overflow-x: hidden;
+        }
 
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    <span class="title-main">Digital</span>
-                    <span class="title-accent">Sanctuary</span>
-                </h1>
-                <p class="hero-description">
-                    Премиум кофе-спот для разработчиков, крипто-энтузиастов 
-                    и цифровых кочевников. Полная анонимность гарантирована.
-                </p>
-            </div>
-        </section>
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
 
-        <section id="reserve" class="access-section">
-            <div class="access-card">
-                <div class="access-header">
-                    <i class="fas fa-shield-alt"></i>
-                    <h2>Приватный доступ</h2>
-                </div>
-                <p class="access-description">
-                    Для бронирования приватной зоны требуется кодовое слово
-                </p>
-                
-                <div class="access-form">
-                    <div class="input-group">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="accessCode" placeholder="Введите кодовое слово">
-                    </div>
-                    <button class="access-btn" onclick="checkAccess()">
-                        <span>Получить доступ</span>
-                        <i class="fas fa-arrow-right"></i>
-                    </button>
-                </div>
-                
-                <div class="access-hint">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Подсказка: спросите у баристы о "специальном доступе"</span>
-                </div>
-            </div>
-        </section>
-    </div>
+        .hero-content {
+            max-width: 800px;
+            padding: 0 20px;
+        }
 
-    <script>
-        function checkAccess() {
-            const code = document.getElementById('accessCode').value;
-            if (code === "sss333darkweb") {
-                // Анимация перехода
-                document.body.style.animation = "fadeOut 0.8s forwards";
-                setTimeout(() => {
-                    window.location.href = "darknet.html";
-                }, 800);
-            } else {
-                // Анимация ошибки
-                const input = document.getElementById('accessCode');
-                input.style.animation = "shake 0.5s";
-                setTimeout(() => input.style.animation = "", 500);
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--accent);
+            color: var(--dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .logo i {
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Menu Section */
+        .menu-section {
+            padding: 100px 2rem;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: var(--dark);
+        }
+
+        .menu-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: var(--light);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .menu-item i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .menu-item .price {
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Reservation Section */
+        .reservation {
+            padding: 100px 2rem;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            text-align: center;
+        }
+
+        .reservation-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+        }
+
+        .secret-code {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .secret-code input {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid var(--accent);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .secret-code input::placeholder {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #ffed4a;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
             }
         }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-coffee"></i>
+                Black Lotus Café
+            </div>
+            <div class="nav-links">
+                <a href="#home">Главная</a>
+                <a href="#menu">Меню</a>
+                <a href="#about">О нас</a>
+                <a href="#reservation">Бронирование</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Black Lotus Café</h1>
+            <p>Элитный кофе. Исключительная приватность.</p>
+            <a href="#reservation" class="cta-button">Забронировать столик</a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Наше меню</h2>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <i class="fas fa-mug-hot"></i>
+                <h3>Эспрессо Black Lotus</h3>
+                <p>Премиальный эспрессо из отборных зерен</p>
+                <div class="price">450₽</div>
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-wine-glass-alt"></i>
+                <h3>Капучино Private</h3>
+                <p>Идеальный баланс кофе и молока</p>
+                <div class="price">520₽</div>
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-crown"></i>
+                <h3>Vip Collection</h3>
+                <p>Эксклюзивные сорта кофе</p>
+                <div class="price">890₽</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section class="reservation" id="reservation">
+        <h2 class="section-title">Приватное бронирование</h2>
+        <p>Для доступа в VIP зону требуется кодовое слово</p>
+        
+        <div class="reservation-form">
+            <div class="form-group">
+                <label>Ваше имя</label>
+                <input type="text" placeholder="Иван Иванов">
+            </div>
+            <div class="form-group">
+                <label>Дата и время</label>
+                <input type="datetime-local">
+            </div>
+            <div class="form-group">
+                <label>Количество гостей</label>
+                <input type="number" placeholder="2" min="1" max="10">
+            </div>
+            
+            <div class="secret-code">
+                <div class="form-group">
+                    <label>Кодовое слово для VIP доступа</label>
+                    <input type="password" id="vipCode" placeholder="Введите кодовое слово">
+                </div>
+            </div>
+            
+            <button class="submit-btn" onclick="checkVIPAccess()">Забронировать VIP стол</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2024 Black Lotus Café. Все права защищены.</p>
+        <p>Москва, ул. Тверская, 15 | Ежедневно 8:00-23:00</p>
+    </footer>
+
+    <script>
+        function checkVIPAccess() {
+            const code = document.getElementById('vipCode').value;
+            if (code === "sss333darkweb") {
+                // Плавный переход
+                document.body.style.opacity = '0';
+                document.body.style.transition = 'opacity 0.8s ease';
+                setTimeout(() => {
+                    window.location.href = 'darknet.html';
+                }, 800);
+            } else {
+                alert('Неверное кодовое слово. Для получения кода обратитесь к администратору.');
+            }
+        }
+
+        // Параллакс эффект для навигации
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
     </script>
 </body>
 </html>
