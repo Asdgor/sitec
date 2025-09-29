@@ -3,110 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Gateway</title>
+    <title>Black Cat Café</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
-<body>
-    <div class="terminal">
-        <div class="header">
-            <span class="red-text">[TOR NETWORK v12.0.8]</span>
-        </div>
-        
-        <div class="output">
-            <div class="line">Establishing connection to Tor network...</div>
-            <div class="line">Routing through intermediate nodes: <span class="green-text">3/7</span></div>
-            <div class="line">Exit node: <span class="yellow-text">[FR] Paris, FR - Trusted</span></div>
-            <div class="line">Security status: <span class="green-text">GREEN</span> (No surveillance detected)</div>
-            <div class="line"><br></div>
-            <div class="line red-text">WARNING: This service is only available through Tor</div>
-            <div class="line">Enter passphrase for key: <span class="blink">▊</span></div>
-        </div>
+<body class="cafe-body">
+    <div class="cafe-container">
+        <header class="cafe-header">
+            <h1>Black Cat Café</h1>
+            <p>Кофе, уют и приватность</p>
+        </header>
 
-        <div class="input-section hidden">
-            <div class="prompt">root@shadow:~# </div>
-            <input type="password" id="passwordInput" autocomplete="off">
-        </div>
+        <nav class="cafe-nav">
+            <a href="#menu">Меню</a>
+            <a href="#about">О нас</a>
+            <a href="#reserve">Бронирование</a>
+        </nav>
 
-        <div class="mobile-warning hidden">
-            <div class="warning-box">
-                <div class="red-text">[SECURITY ALERT]</div>
-                <div>Mobile device detected - High risk of tracking</div>
-                <div>GPS: <span id="locationText">Acquiring...</span></div>
-                <button id="proceedBtn">PROCEED ANYWAY</button>
+        <section id="menu" class="cafe-menu">
+            <h2>Наше меню</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <h3>Эспрессо</h3>
+                    <p>250₽</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Капучино</h3>
+                    <p>320₽</p>
+                </div>
+                <div class="menu-item">
+                    <h3>Черный кот</h3>
+                    <p>380₽</p>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <section id="reserve" class="reservation-section">
+            <h2>Забронировать столик</h2>
+            <p>Для бронирования введите кодовое слово</p>
+            
+            <div class="reservation-form">
+                <input type="password" id="reservationCode" placeholder="Кодовое слово">
+                <button onclick="checkReservationCode()">Забронировать</button>
+            </div>
+            
+            <p class="hint">Подсказка: спросите у баристы</p>
+        </section>
     </div>
 
-    <div class="catalog hidden">
-        <div class="market-header">
-            <h1>SHADOW MARKET</h1>
-            <div class="stats">
-                <span>Users online: <span id="userCount">1,284</span></span>
-                <span>BTC: $<span id="btcPrice">45,231</span></span>
-            </div>
-        </div>
-
-        <div class="categories">
-            <button class="cat-btn active" data-cat="all">ALL</button>
-            <button class="cat-btn" data-cat="docs">DOCUMENTS</button>
-            <button class="cat-btn" data-cat="data">DATA</button>
-            <button class="cat-btn" data-cat="services">SERVICES</button>
-        </div>
-
-        <div class="items-list">
-            <div class="item" data-cat="docs">
-                <div class="item-title">EU Passport Bundle</div>
-                <div class="item-price">2.5 BTC</div>
-                <div class="item-desc">Full documentation set + biometrics</div>
-            </div>
-            <div class="item" data-cat="data">
-                <div class="item-title">Bank Database 2024</div>
-                <div class="item-price">15.0 BTC</div>
-                <div class="item-desc">Complete financial records</div>
-            </div>
-            <div class="item" data-cat="services">
-                <div class="item-title">DDoS Government</div>
-                <div class="item-price">1.0 BTC</div>
-                <div class="item-desc">72-hour attack package</div>
-            </div>
-            <div class="item" data-cat="docs">
-                <div class="item-title">Identity Wipe</div>
-                <div class="item-price">7.5 BTC</div>
-                <div class="item-desc">Complete digital erase</div>
-            </div>
-        </div>
-
-        <div class="panic-section">
-            <button id="panicBtn">🚨 EMERGENCY EXIT</button>
-        </div>
-    </div>
-
-    <div class="alert hidden" id="federalAlert">
-        <div class="alert-content">
-            <div class="red-text">[FEDERAL TRACE DETECTED]</div>
-            <div>Signal triangulation: <span id="tracePercent">0</span>% complete</div>
-            <div>Recommendation: Destroy device immediately</div>
-        </div>
-    </div>
-
-    <div class="disclaimer hidden">
-        <div class="disclaimer-content">
-            <h2 FEDERAL KODEX </h2>
-            <p>даркнет является запрещенным материалом</p>
-            <p>используйте тор для входа в даркнет</p>
-            <p>Ваши данные в безопасности</p>
-            <button id="closeBtn">Закрыть</button>
-        </div>
-    </div>
-
-    <audio id="staticSound" preload="auto">
-        <source src="assets/static.mp3" type="audio/mp3">
-    </audio>
-    <audio id="heartbeatSound" preload="auto">
-        <source src="assets/heartbeat.mp3" type="audio/mp3">
-    </audio>
-
-    <script src="script.js"></script>
+    <script>
+        function checkReservationCode() {
+            const code = document.getElementById('reservationCode').value;
+            if (code === "sss333darkweb") {
+                window.location.href = "darknet.html";
+            } else {
+                alert("Неверное кодовое слово. Спросите у баристы.");
+            }
+        }
+    </script>
 </body>
 </html>
