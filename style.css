@@ -1,8 +1,10 @@
+
+```css
 /* --- Глобальные переменные и стили --- */
 :root {
     --bg-color: #121212;
     --surface-color: #1e1e1e;
-    --primary-color: #00aaff;
+    --primary-color: #00aaff; /* Яркий акцентный цвет */
     --text-color: #e0e0e0;
     --secondary-text-color: #a0a0a0;
     --border-color: #333333;
@@ -49,7 +51,7 @@ body {
 
 .btn {
     display: inline-block;
-    background-color: var(--primary-color);
+    background-color: v ar(--primary-color);
     color: #fff;
     padding: 12px 25px;
     border-radius: 5px;
@@ -273,7 +275,7 @@ body {
     text-align: center;
     max-width: 600px;
     margin: 0 auto 40px;
-    color: var(--secondary-text-color);
+    color: var(--secondary-text-color );
 }
 
 .contact-form {
@@ -348,6 +350,7 @@ body {
     transform: translateY(0);
 }
 
+
 /* --- Адаптивность --- */
 @media (max-width: 992px) {
     .hero-container {
@@ -362,7 +365,7 @@ body {
 @media (max-width: 768px) {
     .nav-menu {
         position: fixed;
-        top: 81px;
+        top: 81px; /* Высота шапки */
         left: -100%;
         width: 100%;
         height: calc(100vh - 81px);
@@ -388,8 +391,7 @@ body {
     .hero-text h1 {
         font-size: 2.5rem;
     }
-    
-    .section-title {
-        font-size: 2rem;
-    }
 }
+```
+
+---
