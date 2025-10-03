@@ -3,494 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Lotus Café - Premium Coffee Experience</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #8B4513;
-            --secondary: #D2691E;
-            --accent: #FFD700;
-            --light: #FFF8DC;
-            --dark: #3C2F2F;
-            --text: #333333;
-        }
-
-        body {
-            font-family: 'Playfair Display', Georgia, serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: var(--text);
-            overflow-x: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.1&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 4.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--accent);
-            color: var(--dark);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--accent);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,215,0,0.3);
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
-
-        .logo i {
-            color: var(--accent);
-            margin-right: 10px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Menu Section */
-        .menu-section {
-            padding: 100px 2rem;
-            background: white;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            color: var(--dark);
-        }
-
-        .menu-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .menu-item {
-            background: var(--light);
-            border-radius: 15px;
-            padding: 2rem;
-            text-align: center;
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(139, 69, 19, 0.1);
-        }
-
-        .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        .menu-item i {
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .menu-item h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--dark);
-        }
-
-        .menu-item .price {
-            font-size: 1.3rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Reservation Section */
-        .reservation {
-            padding: 100px 2rem;
-            background: linear-gradient(135deg, var(--dark), var(--primary));
-            color: white;
-            text-align: center;
-        }
-
-        .reservation-form {
-            max-width: 500px;
-            margin: 2rem auto 0;
-            background: rgba(255,255,255,0.1);
-            padding: 3rem;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: none;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.9);
-            font-size: 1rem;
-        }
-
-        .secret-code {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.3);
-        }
-
-        .secret-code input {
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: 1px solid var(--accent);
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .secret-code input::placeholder {
-            color: rgba(255,255,255,0.7);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: var(--accent);
-            color: var(--dark);
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: #ffed4a;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        /* Transition Overlay */
-        .transition-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000;
-            z-index: 9999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            color: #00ff00;
-            font-family: 'Courier New', monospace;
-        }
-
-        .transition-content {
-            text-align: center;
-        }
-
-        .loading-text {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .loading-bar {
-            width: 300px;
-            height: 4px;
-            background: #333;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .loading-progress {
-            height: 100%;
-            background: #00ff00;
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .menu-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Иван Иванов - Full-Stack Разработчик</title>
+    <meta name="description" content="Портфолио Full-Stack разработчика. Создание сайтов на Python, Django, JavaScript, React.">
+    
+    <!-- Шрифты Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Иконочный шрифт -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Наши стили -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Transition Overlay -->
-    <div class="transition-overlay" id="transitionOverlay">
-        <div class="transition-content">
-            <div class="loading-text" id="loadingText">Инициализация защищенного соединения...</div>
-            <div class="loading-bar">
-                <div class="loading-progress" id="loadingProgress"></div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">
-                <i class="fas fa-coffee"></i>
-                Black Lotus Café
-            </div>
-            <div class="nav-links">
-                <a href="#home">Главная</a>
-                <a href="#menu">Меню</a>
-                <a href="#about">О нас</a>
-                <a href="#reservation">Бронирование</a>
-            </div>
+    <!-- Шапка сайта -->
+    <header class="header">
+        <div class="container">
+            <nav class="main-nav">
+                <a href="#" class="logo">MyPortfolio</a>
+                <ul class="nav-menu">
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#skills">Навыки</a></li>
+                    <li><a href="#projects">Проекты</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <button class="burger-menu" id="burger-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Black Lotus Café</h1>
-            <p>Элитный кофе. Исключительная приватность.</p>
-            <a href="#reservation" class="cta-button">Забронировать столик</a>
-        </div>
-    </section>
-
-    <!-- Menu Section -->
-    <section class="menu-section" id="menu">
-        <h2 class="section-title">Наше меню</h2>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <i class="fas fa-mug-hot"></i>
-                <h3>Эспрессо Black Lotus</h3>
-                <p>Премиальный эспрессо из отборных зерен</p>
-                <div class="price">450₽</div>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-wine-glass-alt"></i>
-                <h3>Капучино Private</h3>
-                <p>Идеальный баланс кофе и молока</p>
-                <div class="price">520₽</div>
-            </div>
-            <div class="menu-item">
-                <i class="fas fa-crown"></i>
-                <h3>Vip Collection</h3>
-                <p>Эксклюзивные сорта кофе</p>
-                <div class="price">890₽</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reservation Section -->
-    <section class="reservation" id="reservation">
-        <h2 class="section-title">Приватное бронирование</h2>
-        <p>Для доступа в VIP зону требуется кодовое слово</p>
-        
-        <div class="reservation-form">
-            <div class="form-group">
-                <label>Ваше имя</label>
-                <input type="text" placeholder="Иван Иванов">
-            </div>
-            <div class="form-group">
-                <label>Дата и время</label>
-                <input type="datetime-local">
-            </div>
-            <div class="form-group">
-                <label>Количество гостей</label>
-                <input type="number" placeholder="2" min="1" max="10">
-            </div>
-            
-            <div class="secret-code">
-                <div class="form-group">
-                    <label>Кодовое слово для VIP доступа</label>
-                    <input type="password" id="vipCode" placeholder="Введите кодовое слово">
-                    <small style="color: rgba(255,255,255,0.7); font-size: 0.9rem;">Подсказка: спросите у администратора</small>
+    <main>
+        <!-- Секция "Hero" (Главный экран) -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-text">
+                    <h1>Привет, я <span class="highlight">Иван Иванов</span></h1>
+                    <p class="subtitle">Full-Stack разработчик из Москвы</p>
+                    <p class="description">Создаю современные и производительные веб-приложения, превращая идеи в реальность с помощью кода.</p>
+                    <a href="#contact" class="btn">Связаться со мной</a>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/images/profile.webp" alt="Фотография разработчика" loading="lazy">
                 </div>
             </div>
-            
-            <button class="submit-btn" onclick="checkVIPAccess()">Забронировать VIP стол</button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!-- Секция "Обо мне" -->
+        <section id="about" class="about section">
+            <div class="container">
+                <h2 class="section-title">Обо мне</h2>
+                <div class="about-content">
+                    <p>
+                        Более 5 лет я занимаюсь разработкой веб-сайтов. Моя страсть — это решение сложных задач и создание интуитивно понятных пользовательских интерфейсов. Я специализируюсь на стеке Python/Django для бэкенда и React/Vue для фронтенда, но всегда открыт к изучению новых технологий. 
+                    </p>
+                    <p>
+                        В свободное время я веду технический блог, участвую в open-source проектах и менторю начинающих разработчиков. Верю, что хороший код — это не только работающий код, но и чистый, поддерживаемый и документированный.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Навыки" -->
+        <section id="skills" class="skills section">
+            <div class="container">
+                <h2 class="section-title">Технологический стек</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <i class="fab fa-python skill-icon"></i>
+                        <h3>Backend</h3>
+                        <p>Python, Django, Flask, FastAPI, Celery, PostgreSQL, Redis, Docker.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fab fa-js-square skill-icon"></i>
+                        <h3>Frontend</h3>
+                        <p>JavaScript (ES6+), TypeScript, React, Vue.js, Redux, HTML5, CSS3/SCSS.</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-tools skill-icon"></i>
+                        <h3>Инструменты</h3>
+                        <p>Git, Webpack, Nginx, CI/CD (GitHub Actions), Linux, Figma.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Проекты" -->
+        <section id="projects" class="projects section">
+            <div class="container">
+                <h2 class="section-title">Мои проекты</h2>
+                <div class="projects-grid">
+                    <!-- Проект 1 -->
+                    <div class="project-card">
+                        <img src="assets/images/project1.webp" alt="Проект 1" class="project-image" loading="lazy">
+                        <div class="project-info">
+                            <h3 class="project-title">Интернет-магазин "EcoShop"</h3>
+                            <p class="project-description">Платформа для продажи органических продуктов с личным кабинетом, системой заказов и интеграцией с платежной системой.</p>
+                            <div class="project-tags">
+                                <span>Django</span>
+                                <span>React</span>
+                                <span>PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" rel="noopener noreferrer">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer">GitHub <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Проект 2 -->
+                    <div class="project-card">
+                        <img src="assets/images/project2.webp" alt="Проект 2" class="project-image" loading="lazy">
+                        <div class="project-info">
+                             <h3 class="project-title">Система бронирования "TravelHub"</h3>
+                            <p class="project-description">Веб-приложение для поиска и бронирования отелей с интерактивной картой и системой отзывов.</p>
+                            <div class="project-tags">
+                                <span>Python</span>
+                                <span>FastAPI</span>
+                                <span>Vue.js</span>
+                                <span>Docker</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#" target="_blank" rel="noopener noreferrer">Live Demo <i class="fas fa-external-link-alt"></i></a>
+                                <a href="#" target="_blank" rel="noopener noreferrer">GitHub <i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Секция "Контакты" -->
+        <section id="contact" class="contact section">
+            <div class="container">
+                <h2 class="section-title">Свяжитесь со мной</h2>
+                <p class="contact-subtitle">Готовы обсудить ваш проект или просто хотите поздороваться? Напишите мне!</p>
+                <form id="contact-form" class="contact-form">
+                    <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" required placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" id="email" required placeholder="Ваш Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" id="message" rows="5" required placeholder="Ваше сообщение"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Отправить сообщение</button>
+                    <div id="form-result"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал сайта -->
     <footer class="footer">
-        <p>© 2024 Black Lotus Café. Все права защищены.</p>
-        <p>Москва, ул. Тверская, 15 | Ежедневно 8:00-23:00</p>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="#" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2024 Иван Иванов. Все права защищены.</p>
+        </div>
     </footer>
 
-    <script>
-        function checkVIPAccess() {
-            const code = document.getElementById('vipCode').value;
-            if (code === "sss333darkweb") {
-                startDarknetTransition();
-            } else {
-                alert('Неверное кодовое слово. Для получения кода обратитесь к администратору.');
-                // Добавляем эффект тряски
-                const input = document.getElementById('vipCode');
-                input.style.animation = 'shake 0.5s';
-                setTimeout(() => input.style.animation = '', 500);
-            }
-        }
-
-        function startDarknetTransition() {
-            const overlay = document.getElementById('transitionOverlay');
-            const progress = document.getElementById('loadingProgress');
-            const text = document.getElementById('loadingText');
-            
-            // Показываем оверлей
-            overlay.style.display = 'flex';
-            
-            // Симуляция загрузки Tor
-            const steps = [
-                { percent: 20, message: "Подключение к сети Tor..." },
-                { percent: 40, message: "Установка защищенного соединения..." },
-                { percent: 60, message: "Шифрование канала..." },
-                { percent: 80, message: "Аутентификация..." },
-                { percent: 100, message: "Доступ получен. Перенаправление..." }
-            ];
-            
-            let currentStep = 0;
-            
-            function nextStep() {
-                if (currentStep < steps.length) {
-                    const step = steps[currentStep];
-                    progress.style.width = step.percent + '%';
-                    text.textContent = step.message;
-                    currentStep++;
-                    
-                    setTimeout(nextStep, 800);
-                } else {
-                    // Переход на даркнет
-                    setTimeout(() => {
-                        window.location.href = 'darknet.html';
-                    }, 1000);
-                }
-            }
-            
-            nextStep();
-        }
-
-        // Анимация тряски для ошибки
-        const shakeStyle = document.createElement('style');
-        shakeStyle.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-        `;
-        document.head.appendChild(shakeStyle);
-
-        // Параллакс эффект для навигации
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-                navbar.style.boxShadow = 'none';
-            }
-        });
-    </script>
+    <!-- Наш JavaScript -->
+    <script src="js/script.js"></script>
 </body>
 </html>
