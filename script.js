@@ -1,3 +1,4 @@
+```javascript
 document.addEventListener('DOMContentLoaded', () => {
 
     // --- Бургер-меню ---
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.1
+        threshold: 0.1 // Секция станет видимой, когда 10% её будет видно
     });
 
     sections.forEach(section => {
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 body: json
             })
-            .then(async (response) => {
+            .then (async (response) => {
                 let jsonResponse = await response.json();
                 if (response.status == 200) {
                     formResult.innerHTML = "Сообщение успешно отправлено!";
@@ -81,3 +82,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+```
